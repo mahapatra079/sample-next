@@ -8,7 +8,7 @@ import { useState } from "react";
 const links = [
   { href: "/home", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
+  { href: "/product", label: "Product" },
   { href: "/contact", label: "Contact" },
 ]
 
@@ -74,3 +74,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+// prefetch={false} is used to prevent Next.js from preloading the linked pages, which can be useful for performance optimization in certain scenarios.

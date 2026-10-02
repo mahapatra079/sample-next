@@ -19,6 +19,7 @@ export default function Home() {
   const handleReset = () => {
     setCount(0);
   }
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[50vh] bg-gray-100 dark:bg-gray-900 mb-0">
