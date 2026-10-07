@@ -1,6 +1,23 @@
+"use client";
+
 import Link from "next/link";
+import { useSyncExternalStore } from "react";
+
+function subscribeToYear() {
+  return () => {};
+}
+
+function getCurrentYear() {
+  return new Date().getFullYear();
+}
 
 export default function Footer() {
+  const year = useSyncExternalStore(
+    subscribeToYear,
+    getCurrentYear,
+    () => 2026,
+  );
+
   return (
     <footer className="border-t border-gray-200 bg-gray-50">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-3">
@@ -14,8 +31,9 @@ export default function Footer() {
         <div>
           <p className="text-sm font-semibold text-gray-900">Pages</p>
           <ul className="mt-2 space-y-1 text-sm text-gray-600">
-            <li><Link href="/" className="hover:text-gray-900">Home</Link></li>
+            <li><Link href="/home" className="hover:text-gray-900">Home</Link></li>
             <li><Link href="/about" className="hover:text-gray-900">About</Link></li>
+            <li><Link href="/product" className="hover:text-gray-900">Product</Link></li>
             <li><Link href="/contact" className="hover:text-gray-900">Contact</Link></li>
           </ul>
         </div>
@@ -31,7 +49,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-gray-200 py-4 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} MySite. All rights reserved.
+        © {year ?? 2026} MySite. All rights reserved.
       </div>
     </footer>
   );
