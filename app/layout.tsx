@@ -13,8 +13,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col">
+        <a
+          href="#main-content"
+          className="sr-only z-50 rounded-sm bg-white px-4 py-3 font-semibold text-gray-950 focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-900"
+        >
+          Skip to main content
+        </a>
         <Navbar />
-        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+        <main id="main-content" className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
           {children}
         </main> 
         <Footer />

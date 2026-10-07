@@ -6,48 +6,95 @@ export default function Home() {
 
   const [count, setCount] = useState(0);
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-  }
-
-  const handleDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  }
-
-  const handleReset = () => {
-    setCount(0);
-  }
-  
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-[50vh] bg-gray-100 dark:bg-gray-900 mb-0">
-        <h1 className="text-5xl font-bold text-black dark:text-white">
-          Hello,  Counter App!
+    <div className="mx-auto max-w-3xl py-8 text-gray-950">
+      <header className="mb-10 max-w-2xl">
+        <p className="mb-3 text-sm font-semibold uppercase text-emerald-900">
+          Accessibility
+        </p>
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          A counter everyone can use
         </h1>
-        <div className="flex space-x-4 mt-4">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            onClick={handleIncrement}>
-            Increment
+        <p className="mt-4 text-lg leading-7 text-gray-700">
+          Use the buttons with a mouse, touch, or keyboard. Updates are announced
+          to screen readers.
+        </p>
+      </header>
+
+      <section
+        aria-labelledby="counter-heading"
+        className="border-y border-gray-300 py-8"
+      >
+        <h2 id="counter-heading" className="text-xl font-semibold">
+          Counter
+        </h2>
+        <p className="mt-1 text-sm text-gray-700">
+          The count cannot go below zero.
+        </p>
+
+        <p
+          role="status"
+          aria-atomic="true"
+          className="my-6 text-5xl font-bold tabular-nums text-emerald-950"
+        >
+          {count}
+          <span className="sr-only">{count === 1 ? " item" : " items"}</span>
+        </p>
+
+        <div role="group" aria-label="Counter controls" className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            className="min-h-11 rounded-sm bg-emerald-800 px-5 font-semibold text-white hover:bg-emerald-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-950"
+            onClick={() => setCount((current) => current + 1)}
+          >
+            Increase count
           </button>
-          <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:cursor-not-allowed disabled:opacity-50"
-            onClick={handleDecrement} disabled={count === 0}>
-            Decrement
+          <button
+            type="button"
+            className="min-h-11 rounded-sm border border-gray-500 bg-white px-5 font-semibold text-gray-950 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-950 disabled:cursor-not-allowed disabled:text-gray-500"
+            onClick={() => setCount((current) => Math.max(0, current - 1))}
+            disabled={count === 0}
+          >
+            Decrease count
           </button>
-          <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
-            onClick={handleReset} disabled={count === 0}>
+          <button
+            type="button"
+            className="min-h-11 rounded-sm border border-gray-500 bg-white px-5 font-semibold text-gray-950 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-950 disabled:cursor-not-allowed disabled:text-gray-500"
+            onClick={() => setCount(0)}
+            disabled={count === 0}
+          >
             Reset
           </button>
         </div>
-        <p className="mt-2 text-lg text-black dark:text-white">
-          Current Count: {count}
+      </section>
+
+      <section aria-labelledby="practices-heading" className="py-8">
+        <h2 id="practices-heading" className="text-xl font-semibold">
+          WCAG practices shown
+        </h2>
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-gray-700">
+          <li>Skip link to the main content (2.4.1)</li>
+          <li>Keyboard-operable native buttons (2.1.1)</li>
+          <li>Visible keyboard focus (2.4.7)</li>
+          <li>Programmatically announced status updates (4.1.3)</li>
+          <li>Text and controls use strong contrast</li>
+        </ul>
+        <p className="mt-5 text-sm text-gray-700">
+          This small example demonstrates a few practices; it is not a complete
+          WCAG audit.
         </p>
+      </section>
     </div>
   );
 }
 
+// Open the site in Edge or Chrome, then press Win + Ctrl + Enter to start Narrator.
 
+// The main keyboard keys for checking accessibility are:
 
-// This component is in Server Component by default.
-// It can be made a Client Component by adding the "use client" directive at the top of the file.
+// Tab / Shift + Tab: Move forward/backward through links, buttons, and fields.
+// Enter: Open a link or activate a button.
+// Space: Activate a button or toggle a checkbox.
+// Arrow keys: Move within menus, radio groups, and some widgets.
+// Escape: Close a menu or dialog.
+// Home / End: Jump to the start or end in some lists and text areas.
