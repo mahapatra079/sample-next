@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const siteLinks = [
-  { href: "/display", label: "Display" },
+  { href: "/home", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/product", label: "Product" },
   { href: "/contact", label: "Contact" },
